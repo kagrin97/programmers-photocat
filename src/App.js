@@ -9,20 +9,43 @@ class App {
 
     this.searchInput = new SearchInput({
       $target,
-      onSearch: (keyword) => {
-        api.fetchCats(keyword).then(({ data }) => {
+      onSearch: async (keyword) => {
+        try {
+          this.loadingInfo.onChange();
+          const { data } = await api.fetchCats(keyword);
           this.setState(data);
-        });
+        } catch (e) {
+          console.log(e);
+        } finally {
+          this.loadingInfo.onChange();
+        }
+      },
+      onClick: async () => {
+        try {
+          this.loadingInfo.onChange();
+          const { data } = await api.fetchCat50();
+          this.setState(data);
+        } catch (e) {
+          console.log(e);
+        } finally {
+          this.loadingInfo.onChange();
+        }
       },
     });
 
     this.searchResult = new SearchResult({
       $target,
-      initialData: this.data,
-      onClick: (image) => {
-        api.fetchCatDetails(image.id).then(({ data }) => {
+      initialData: null,
+      onClick: async (image) => {
+        try {
+          this.loadingInfo.onChange();
+          const { data } = await api.fetchCatDetails(image.id);
           this.imageInfo.setState({ visible: true, image: data });
-        });
+        } catch (e) {
+          console.log(e);
+        } finally {
+          this.loadingInfo.onChange();
+        }
       },
     });
 
@@ -31,6 +54,13 @@ class App {
       data: {
         visible: false,
         image: null,
+      },
+    });
+
+    this.loadingInfo = new LoadingInfo({
+      $target,
+      data: {
+        visible: false,
       },
     });
   }

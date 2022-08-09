@@ -21,4 +21,13 @@ const api = {
       console.error(e);
     }
   },
+
+  fetchCat50: async () => {
+    try {
+      const response = await fetch(`${API_ENDPOINT}/api/cats/random50`);
+      if (response.ok) return await response.json();
+    } catch (e) {
+      console.error(e);
+    }
+  },
 };
