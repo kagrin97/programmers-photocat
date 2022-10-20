@@ -9,10 +9,13 @@ class App {
 
     this.searchInput = new SearchInput({
       $target,
+      keyword: Session.getKeyWord(),
       onSearch: async (keyword) => {
         try {
           this.loadingInfo.onChange();
           const { data } = await api.fetchCats(keyword);
+          Session.setCat(data);
+          Session.setKeyWord(keyword);
           this.setState(data);
         } catch (e) {
           console.log(e);
@@ -24,6 +27,7 @@ class App {
         try {
           this.loadingInfo.onChange();
           const { data } = await api.fetchCat50();
+          Session.setCat(data);
           this.setState(data);
         } catch (e) {
           console.log(e);
@@ -35,7 +39,7 @@ class App {
 
     this.searchResult = new SearchResult({
       $target,
-      initialData: null,
+      initialData: Session.getCat(),
       onClick: async (image) => {
         try {
           this.loadingInfo.onChange();
@@ -68,5 +72,6 @@ class App {
   setState(nextData) {
     this.data = nextData;
     this.searchResult.setState(nextData);
+    this.searchInput.setState();
   }
 }

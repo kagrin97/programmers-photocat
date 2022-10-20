@@ -1,7 +1,7 @@
 const TEMPLATE = '<input type="text">';
 
 class SearchInput {
-  constructor({ $target, onSearch, onClick }) {
+  constructor({ $target, keyword, onSearch, onClick }) {
     const $searchInput = document.createElement("input");
     this.$searchInput = $searchInput;
     this.$searchInput.placeholder = "고양이를 검색해보세요.|";
@@ -15,6 +15,10 @@ class SearchInput {
     this.$randomBtn = $randomBtn;
     this.$randomBtn.innerText = "50 랜덤";
 
+    const $keyword = document.createElement("div");
+    this.$keyword = $keyword;
+    this.word = keyword;
+
     $darkBtn.className = "darkBtn";
     $randomBtn.className = "randomBtn";
     $searchInput.className = "SearchInput";
@@ -22,6 +26,7 @@ class SearchInput {
     $target.appendChild($darkBtn);
     $target.appendChild($randomBtn);
     $target.appendChild($searchInput);
+    $target.appendChild($keyword);
 
     // os가 다크모드인지 판단하는 함수
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -47,10 +52,45 @@ class SearchInput {
       }
     });
 
+    this.onSearch = onSearch;
+
     // 랜덤 50 버튼 이벤트
     this.$randomBtn.addEventListener("click", () => {
       onClick();
     });
+
+    this.render();
   }
-  render() {}
+
+  setState() {
+    this.word = Session.getKeyWord();
+    this.render();
+  }
+
+  render() {
+    // 초기 화면
+    if (this.word === null) {
+      this.$keyword.innerHTML = "";
+    }
+    // 호출된 결과가 있을 때
+    else if (this.word.length) {
+      this.$keyword.innerHTML = this.word
+        .map(
+          (word) => `
+              <button class="keyword">${word}</button>
+          `
+        )
+        .join("");
+
+      this.$keyword.querySelectorAll(".keyword").forEach(($item, index) => {
+        $item.addEventListener("click", () => {
+          this.onSearch(this.word[index]);
+        });
+      });
+    }
+    // 호출된 결과가 없을 때
+    else {
+      this.$keyword.innerHTML = `<p>검색 결과가 없습니다.</p>`;
+    }
+  }
 }

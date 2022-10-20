@@ -7,7 +7,6 @@ class SearchResult {
     this.$searchResult = document.createElement("main");
     this.$searchResult.className = "SearchResult";
     $target.appendChild(this.$searchResult);
-
     this.data = initialData;
     this.onClick = onClick;
 
@@ -45,7 +44,7 @@ class SearchResult {
     }
     // 호출된 결과가 없을 때
     else {
-      this.$searchResult.innerHTML = `<p>검색 결과가 없습니다.</p>`;
+      this.$searchResult.innerHTML = `<p>키워드가 없습니다..</p>`;
     }
   }
 }

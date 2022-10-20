@@ -1,5 +1,5 @@
 const API_ENDPOINT =
-  "https://oivhcpn8r9.execute-api.ap-northeast-2.amazonaws.com/dev";
+  "https://q9d70f82kd.execute-api.ap-northeast-2.amazonaws.com/dev";
 
 const api = {
   fetchCats: async (keyword) => {
