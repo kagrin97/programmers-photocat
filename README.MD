@@ -78,7 +78,7 @@
 
 ## API
 
-- [] fetch는 async await를 활용하여 진행하고 에러가 나는 경우 적절히 처리한다
+- [x] fetch는 async await를 활용하여 진행하고 에러가 나는 경우 적절히 처리한다
 
 - [] status code에 따라 에러메세지를 분리하여 작성한다
 

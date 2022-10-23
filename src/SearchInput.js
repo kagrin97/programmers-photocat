@@ -47,7 +47,6 @@ class SearchInput {
 
     // 검색 이벤트
     $searchInput.addEventListener("keyup", (e) => {
-      console.log(e.target.value);
       if (e.keyCode === 13) {
         onSearch(e.target.value);
       }

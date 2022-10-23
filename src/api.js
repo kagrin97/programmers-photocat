@@ -7,7 +7,7 @@ const api = {
       const response = await fetch(
         `${API_ENDPOINT}/api/cats/search?q=${keyword}`
       );
-      if (response.ok) return await response.json();
+      return responseHandler(response);
     } catch (e) {
       console.error(e);
     }
@@ -16,7 +16,7 @@ const api = {
   fetchCatDetails: async (id) => {
     try {
       const response = await fetch(`${API_ENDPOINT}/api/cats/${id}`);
-      if (response.ok) return await response.json();
+      return responseHandler(response);
     } catch (e) {
       console.error(e);
     }
@@ -25,7 +25,7 @@ const api = {
   fetchCat50: async () => {
     try {
       const response = await fetch(`${API_ENDPOINT}/api/cats/random50`);
-      if (response.ok) return await response.json();
+      return responseHandler(response);
     } catch (e) {
       console.error(e);
     }
