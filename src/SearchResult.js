@@ -29,7 +29,7 @@ class SearchResult {
         .map(
           (cat) => `
             <section class="item">
-              <img src=${cat.url} alt=${cat.name} />
+              <img class="img" data-lazy=${cat.url} alt=${cat.name} />
               <span class="cat-name">${cat.name}</span>
             </section>
           `
@@ -41,6 +41,19 @@ class SearchResult {
           this.onClick(this.data[index]);
         });
       });
+
+      const images = document.querySelectorAll("img"); // 모든 이미지 파일 선택
+      window.addEventListener("scroll", (event) => {
+        images.forEach((img) => {
+          const rect = img.getBoundingClientRect().top;
+          if (rect <= window.innerHeight) {
+            const src = img.getAttribute("data-lazy");
+            img.setAttribute("src", src);
+          }
+        });
+      });
+
+      window.scrollTo(0, 1);
     }
     // 호출된 결과가 없을 때
     else {
