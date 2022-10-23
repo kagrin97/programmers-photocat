@@ -47,8 +47,16 @@ class SearchInput {
 
     // 검색 이벤트
     $searchInput.addEventListener("keyup", (e) => {
+      console.log(e.target.value);
       if (e.keyCode === 13) {
         onSearch(e.target.value);
+      }
+    });
+
+    // 검색어가 있을때 클릭하면 검색문자 삭제
+    $searchInput.addEventListener("click", (e) => {
+      if ($searchInput.value) {
+        $searchInput.value = null;
       }
     });
 
