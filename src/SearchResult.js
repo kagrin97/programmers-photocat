@@ -30,14 +30,14 @@ class SearchResult {
           if (index < 8) {
             return `
               <section class="item">
-                <img class="img" src=${cat.url} alt=${cat.name} />
+                <img class="cat_img" src=${cat.url} alt=${cat.name} />
                 <span class="cat-name">${cat.name}</span>
               </section>
               `;
           } else {
             return `
             <section class="item">
-              <img class="img" data-lazy=${cat.url} alt=${cat.name} />
+              <img class="cat_img" data-lazy=${cat.url} alt=${cat.name} />
               <span class="cat-name">${cat.name}</span>
             </section>
             `;
@@ -51,43 +51,40 @@ class SearchResult {
         });
       });
 
-      document.addEventListener("DOMContentLoaded", function () {
-        var lazyloadImages = document.querySelectorAll("img");
-        var lazyloadThrottleTimeout;
+      let lazyloadImages = document.querySelectorAll(".cat_img");
+      let lazyloadThrottleTimeout;
 
-        function lazyload() {
-          if (lazyloadThrottleTimeout) {
-            clearTimeout(lazyloadThrottleTimeout);
-          }
-
-          lazyloadThrottleTimeout = setTimeout(function () {
-            var scrollTop = window.pageYOffset;
-
-            lazyloadImages.forEach(function (img) {
-              console.log(scrollTop, window.innerHeight);
-              if (img.offsetTop < window.innerHeight + scrollTop) {
-                const src = img.getAttribute("data-lazy");
-                if (src) {
-                  img.setAttribute("src", src);
-                }
-              }
-            });
-            if (lazyloadImages.length == 0) {
-              document.removeEventListener("scroll", lazyload);
-              window.removeEventListener("resize", lazyload);
-              window.removeEventListener("orientationChange", lazyload);
-            }
-          }, 20);
+      function lazyload() {
+        if (lazyloadThrottleTimeout) {
+          clearTimeout(lazyloadThrottleTimeout);
         }
 
-        document.addEventListener("scroll", lazyload);
-        window.addEventListener("resize", lazyload);
-        window.addEventListener("orientationChange", lazyload);
-      });
+        lazyloadThrottleTimeout = setTimeout(function () {
+          let scrollTop = window.pageYOffset;
+
+          lazyloadImages.forEach(function (img) {
+            if (img.offsetTop < window.innerHeight + scrollTop) {
+              const src = img.getAttribute("data-lazy");
+              if (src) {
+                img.setAttribute("src", src);
+              }
+            }
+          });
+          if (lazyloadImages.length == 0) {
+            document.removeEventListener("scroll", lazyload);
+            window.removeEventListener("resize", lazyload);
+            window.removeEventListener("orientationChange", lazyload);
+          }
+        }, 20);
+      }
+
+      document.addEventListener("scroll", lazyload);
+      window.addEventListener("resize", lazyload);
+      window.addEventListener("orientationChange", lazyload);
     }
     // 호출된 결과가 없을 때
     else {
-      this.$searchResult.innerHTML = `<p>키워드가 없습니다..</p>`;
+      this.$searchResult.innerHTML = `<p>찾으시는 고양이가 없습니다!...</p>`;
     }
   }
 }
