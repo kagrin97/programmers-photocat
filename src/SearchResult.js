@@ -26,14 +26,23 @@ class SearchResult {
     // 호출된 결과가 있을 때
     else if (this.data.length) {
       this.$searchResult.innerHTML = this.data
-        .map(
-          (cat) => `
+        .map((cat, index) => {
+          if (index < 8) {
+            return `
+              <section class="item">
+                <img class="img" src=${cat.url} alt=${cat.name} />
+                <span class="cat-name">${cat.name}</span>
+              </section>
+              `;
+          } else {
+            return `
             <section class="item">
               <img class="img" data-lazy=${cat.url} alt=${cat.name} />
               <span class="cat-name">${cat.name}</span>
             </section>
-          `
-        )
+            `;
+          }
+        })
         .join("");
 
       this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
@@ -42,18 +51,38 @@ class SearchResult {
         });
       });
 
-      const images = document.querySelectorAll("img"); // 모든 이미지 파일 선택
-      window.addEventListener("scroll", (event) => {
-        images.forEach((img) => {
-          const rect = img.getBoundingClientRect().top;
-          if (rect <= window.innerHeight) {
-            const src = img.getAttribute("data-lazy");
-            img.setAttribute("src", src);
-          }
-        });
-      });
+      document.addEventListener("DOMContentLoaded", function () {
+        var lazyloadImages = document.querySelectorAll("img");
+        var lazyloadThrottleTimeout;
 
-      window.scrollTo(0, 1);
+        function lazyload() {
+          if (lazyloadThrottleTimeout) {
+            clearTimeout(lazyloadThrottleTimeout);
+          }
+
+          lazyloadThrottleTimeout = setTimeout(function () {
+            var scrollTop = window.pageYOffset;
+
+            lazyloadImages.forEach(function (img) {
+              if (img.offsetTop < window.innerHeight + scrollTop) {
+                const src = img.getAttribute("data-lazy");
+                if (src) {
+                  img.setAttribute("src", src);
+                }
+              }
+            });
+            if (lazyloadImages.length == 0) {
+              document.removeEventListener("scroll", lazyload);
+              window.removeEventListener("resize", lazyload);
+              window.removeEventListener("orientationChange", lazyload);
+            }
+          }, 20);
+        }
+
+        document.addEventListener("scroll", lazyload);
+        window.addEventListener("resize", lazyload);
+        window.addEventListener("orientationChange", lazyload);
+      });
     }
     // 호출된 결과가 없을 때
     else {
