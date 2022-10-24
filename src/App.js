@@ -37,6 +37,8 @@ class App {
       },
     });
 
+    this.carousel = new Carousel({ $target });
+
     this.searchResult = new SearchResult({
       $target,
       initialData: Session.getCat(),

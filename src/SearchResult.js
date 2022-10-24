@@ -64,6 +64,7 @@ class SearchResult {
             var scrollTop = window.pageYOffset;
 
             lazyloadImages.forEach(function (img) {
+              console.log(scrollTop, window.innerHeight);
               if (img.offsetTop < window.innerHeight + scrollTop) {
                 const src = img.getAttribute("data-lazy");
                 if (src) {

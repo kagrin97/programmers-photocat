@@ -224,3 +224,32 @@ p {
     opacity: 0;
   }
 }
+
+.carouselContainer {
+  width: 500px;
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin: auto;
+}
+
+.carouselContainer > .carousel {
+  display: flex;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.2s;
+}
+
+.carousel_item {
+  width: 500px;
+  height: 300px;
+}
+
+.carousel_item > img {
+  width: 500px;
+  height: 300px;
+  object-fit: contain;
+}
+
+.buttonContainer {
+  text-align: center;
+}
