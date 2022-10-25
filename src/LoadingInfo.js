@@ -3,7 +3,7 @@ class LoadingInfo {
   data = null;
 
   constructor({ $target, data }) {
-    const $loadingInfo = document.createElement("div");
+    const $loadingInfo = document.createElement("section");
     $loadingInfo.className = "loading";
     this.$loadingInfo = $loadingInfo;
     this.data = data;
@@ -23,7 +23,7 @@ class LoadingInfo {
 
   render() {
     this.$loadingInfo.innerHTML = `
-      <div class="loading-text">현재 불러오는 중입니다...</div>
+      <article class="loading-text">현재 불러오는 중입니다...</article>
   `;
   }
 }

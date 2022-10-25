@@ -1,6 +1,6 @@
 const TEMPLATE = '<input type="text">';
 
-class SearchInput {
+class Header {
   constructor({ $target, keyword, onSearch, onClick }) {
     const $searchInput = document.createElement("input");
     this.$searchInput = $searchInput;
@@ -15,18 +15,22 @@ class SearchInput {
     this.$randomBtn = $randomBtn;
     this.$randomBtn.innerText = "50 랜덤";
 
-    const $keyword = document.createElement("div");
+    const $keyword = document.createElement("section");
     this.$keyword = $keyword;
     this.word = keyword;
+
+    const $headerContainer = document.createElement("header");
 
     $darkBtn.className = "darkBtn";
     $randomBtn.className = "randomBtn";
     $searchInput.className = "SearchInput";
 
-    $target.appendChild($darkBtn);
-    $target.appendChild($randomBtn);
-    $target.appendChild($searchInput);
-    $target.appendChild($keyword);
+    $headerContainer.appendChild($darkBtn);
+    $headerContainer.appendChild($randomBtn);
+    $headerContainer.appendChild($searchInput);
+    $headerContainer.appendChild($keyword);
+
+    $target.appendChild($headerContainer);
 
     // os가 다크모드인지 판단하는 함수
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {

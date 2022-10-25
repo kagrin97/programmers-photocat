@@ -7,7 +7,7 @@ class App {
   constructor($target) {
     this.$target = $target;
 
-    this.searchInput = new SearchInput({
+    this.header = new Header({
       $target,
       keyword: Session.getKeyWord(),
       onSearch: async (keyword) => {
@@ -74,6 +74,6 @@ class App {
   setState(nextData) {
     this.data = nextData;
     this.searchResult.setState(nextData);
-    this.searchInput.setState();
+    this.header.setState();
   }
 }

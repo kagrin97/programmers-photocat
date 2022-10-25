@@ -8,7 +8,7 @@ class Carousel {
     const $buttonContainer = document.createElement("section");
 
     const $carouselContainer = document.createElement("section");
-    const $carousel = document.createElement("div");
+    const $carousel = document.createElement("article");
 
     $prevButton.className = "prevButton";
     $nextButton.className = "nextButton";
