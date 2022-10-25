@@ -2,17 +2,31 @@
 
 ---
 
+## 프로젝트 진행도중 작성한 블로그 포스터
+
+<a class="dark:text-white" target="_blank" href="https://kagrin97-blog.vercel.app/js/Lazy-load">javaScript로 Lazy loading를 구현 (쓰로틀링까지)</a>
+
+<a class="dark:text-white" target="_blank" href="https://kagrin97-blog.vercel.app/js/carousel">javaScript로 이미지 슬라이드(캐러셀이라고도 함)를 구현</a>
+
+<a class="dark:text-white" target="_blank" href="https://kagrin97-blog.vercel.app/js/DarkMode">javaScript로 Dark Mode를 구현해보자!</a>
+
+---
+
 ## HTML, CSS 시멘틱 마크업 적용
 
 코드가 전체적으로 div로만 이루어져 있습니다. 시멘틱한 방법으로 마크업을 변경하세요.
 
 ## 반응형 CSS 지원
 
+<video controls width=60% src="https://user-images.githubusercontent.com/75124028/197676782-09101415-3db1-421f-aa67-ebb6da0f31b0.mp4" ></video>
+
 - [x] 유저가 사용하는 디바이스의 길이에 따라 row당 column개수를 적절히 변경해야 한다.
 
 - [x] 992px 이하 3개 768px 이하 2개 576px 이하 1개
 
 ## 다크모드 지원
+
+<video controls width=60% src="https://user-images.githubusercontent.com/75124028/197676864-60a4ddd0-dae4-4369-8b99-2b256a9c2c1b.mp4" ></video>
 
 - [x] 기존 CSS의 모든주석을 제거 하고 모든 글자는 #FFFFFF, 배경은 #000000으로 한정한다.
 
@@ -21,6 +35,8 @@
 - [x] 유저가 테마를 토글링할 수 있도록 좌측 상단에 해당 기능을 토글하는 체크박스를 생성.
 
 ## 이미지 상세보기 모달
+
+<video controls width=60% src="https://user-images.githubusercontent.com/75124028/197676957-97eec404-9278-4bab-a9b2-4f1a3c36c170.mp4" ></video>
 
 - [x] max-size가 768px 이하인경우 모달의 가로길이를 디바이스 가로길이만큼 늘림
 
@@ -37,6 +53,8 @@
 - [x] Modal의 열기/닫기 이벤트에 fade in/out 적용
 
 ## 검색 페이지
+
+<video controls width=60% src="https://user-images.githubusercontent.com/75124028/197676987-663b3cfd-634c-4b43-8cb8-0a7cf25b84e3.mp4" ></video>
 
 - [x] 페이지 진입 시 검색창(input)에 focus처리
 
@@ -62,7 +80,7 @@
 
 ## 랜덤고양이 배너 섹션
 
-해당 구현사항은 어떤 것인지 이해가 안되서 진행이 안되고있다...
+<video controls width=60% src="https://user-images.githubusercontent.com/75124028/197677019-5de33e1f-7971-42fe-88da-5c47f45d60b6.mp4" ></video>
 
 - [x] 현재 검색 결과 목록 위에 배너형태의 랜덤 고양이 섹션을 추가한다.
 
@@ -76,7 +94,7 @@
 
 - [x] SearchResult에 각 아이템을 클릭하는 이벤트를 EventDelegation을 이용하여 수정
 
-- [] 각 컴포넌트의 내부함수와 Util함수를 잘게 나누기
+- [x] 각 컴포넌트의 내부함수와 Util함수를 잘게 나누기
 
 ## API
 
