@@ -30,14 +30,14 @@ class SearchResult {
           if (index < 8) {
             return `
               <section class="item">
-                <img class="cat_img" src=${cat.url} alt=${cat.name} />
+                <img data-index=${index} class="cat_img" src=${cat.url} alt=${cat.name} />
                 <span class="cat-name">${cat.name}</span>
               </section>
               `;
           } else {
             return `
             <section class="item">
-              <img class="cat_img" data-lazy=${cat.url} alt=${cat.name} />
+              <img data-index=${index} class="cat_img" data-lazy=${cat.url} alt=${cat.name} />
               <span class="cat-name">${cat.name}</span>
             </section>
             `;
@@ -45,10 +45,11 @@ class SearchResult {
         })
         .join("");
 
-      this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
-        $item.addEventListener("click", () => {
-          this.onClick(this.data[index]);
-        });
+      this.$searchResult.addEventListener("click", (e) => {
+        const catIndex = e.target.getAttribute("data-index");
+        if (catIndex) {
+          this.onClick(this.data[catIndex]);
+        }
       });
 
       let lazyloadImages = document.querySelectorAll(".cat_img");

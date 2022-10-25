@@ -95,9 +95,5 @@ class SearchInput {
         });
       });
     }
-    // 호출된 결과가 없을 때
-    else {
-      this.$keyword.innerHTML = `<p>검색 결과가 없습니다.</p>`;
-    }
   }
 }

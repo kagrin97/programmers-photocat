@@ -74,7 +74,7 @@
 
 ## 추가 요구사항
 
-- [] SearchResult에 각 아이템을 클릭하는 이벤트를 EventDelegation을 이용하여 수정
+- [x] SearchResult에 각 아이템을 클릭하는 이벤트를 EventDelegation을 이용하여 수정
 
 - [] 각 컴포넌트의 내부함수와 Util함수를 잘게 나누기
 
